@@ -1,0 +1,28 @@
+.form form {
+    max-width: 500px;
+    border: 1px solid #282828;
+    padding: 30px;
+    margin: 77px auto;
+}
+.form form input {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 30px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+.form form button {
+    height: 30px;
+    width: 100%;
+}
+.form .buttons {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: space-between;
+}
+.form .buttons input {
+    width: 30%;
+}
