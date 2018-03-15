@@ -5,15 +5,15 @@ export class UserService {
 
     private isUserLoggedIn;
     private userName;
-    
-  constructor() { 
+
+  constructor() {
     this.isUserLoggedIn = false;
   }
-    
+
     setUserLoggedIn() {
         this.isUserLoggedIn = true;
     }
-    
+
     getUserLoggedIn() {
         return this.isUserLoggedIn;
     }
