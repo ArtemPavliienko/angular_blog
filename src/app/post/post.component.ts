@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { LoginFormComponent } from '../login-form/login-form.component';
 
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-post',
@@ -14,26 +12,17 @@ export class PostComponent implements OnInit {
   newTitlePost: string;
   newTextPost: string;
   posts;
-  reversePost;
+  thisUserName: string;
 
-  constructor(private user: UserService, public userLog: LoginFormComponent) {
+  constructor(private user: UserService) {
     // получаем все посты в объекте
     this.posts = JSON.parse(localStorage.getItem('Posts'));
-
-    console.log(this.posts);
-    // console.log(this.userLog, 'userLog');
-    // console.log(this.userLog.userLog, 'userLog fffffffff');
-    // console.log(this.userLog.userNameLog());
+    // name user
+    this.thisUserName = this.user.userName;
+    console.log(this.thisUserName, 'this.userY')
   }
 
-  ngOnInit() {
-    this.viewPosts();
-  }
-
-  viewPosts() {
-      //this.reversePost = this.posts.reverse();
-      //console.log(this.reversePost);
-  }
+  ngOnInit() {}
 
   addPostModal() {
     // берем модал и добавляем класс опен
@@ -67,7 +56,7 @@ export class PostComponent implements OnInit {
 
         // послеждний goods[goods.length - 1];
         // берем первый эл массива
-        let lastPost = this.posts[0];
+        let lastPost = this.posts[this.posts.length -1];
         id = lastPost.id++;
 
         this.localSt(newTitlePost, newTextPost, timePost, id);
@@ -76,7 +65,7 @@ export class PostComponent implements OnInit {
 
   localSt(titl, text, timePost, id) {
       let newP = {
-          user: 'user',
+          user: this.thisUserName,
           titlePost: titl,
           textPost: text,
           time: timePost,
@@ -84,7 +73,7 @@ export class PostComponent implements OnInit {
       }
 
       this.posts.unshift(newP);
-      var json = JSON.stringify(this.posts); //сериализуем его
+      let json = JSON.stringify(this.posts); //сериализуем его
       localStorage.setItem("Posts", json);
   }
 

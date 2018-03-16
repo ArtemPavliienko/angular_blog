@@ -10,13 +10,10 @@ import { UserService } from '../user.service';
 export class LoginFormComponent implements OnInit {
 
   locSt: any;
-  public userLog;
 
   constructor(private router: Router, private user: UserService) {}
 
-  ngOnInit() {
-    //this.localStor();
-  }
+  ngOnInit() {}
 
   loginUser(event) {
       event.preventDefault();
@@ -42,10 +39,7 @@ export class LoginFormComponent implements OnInit {
       } else if (offOn == 0) {
         alert('Error name or password');
       }
-      this.userLog = userName;
-      console.log(this.userLog, 'var login user');
-      console.log(userName, 'login user');
-      this.userNameLog();
+      this.user.saveName(userName);
   }
 
   registration(event) {
@@ -80,18 +74,11 @@ export class LoginFormComponent implements OnInit {
                   alert('Пользователь с таким логином существует.');
               } else {
                   this.ls(meaningsLocalS, newUserName, newUserPass);
-                  let UserLog = newUserName;
-                  // сохраняет нового пользователя
-                  console.log(newUserName, 'newUserName')
-                  console.log(UserLog, 'newUserName2');
-                  this.userNameLog();
               }
           }
+
+          this.user.saveName(newUserName);
       }
-  }
-
-  userNameLog() {
-
   }
 
   ls(meaningsLocalS, newUserName, newUserPass) {
@@ -105,19 +92,4 @@ export class LoginFormComponent implements OnInit {
       this.router.navigate(['/post']);
   }
 
-  localStor() {
-      // Не понял как записать сразу в локал
-      let locSt = [
-          {
-              userName: "admin",
-              userPass: "admin"
-          },
-          {
-              userName: "kvazarmw",
-              userPass: "123"
-          }
-      ];
-      let lc = JSON.stringify(locSt);
-      localStorage.setItem('user', lc);
-    }
 }
