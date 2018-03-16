@@ -1,26 +1,23 @@
 <app-header></app-header>
 
-<div>
+<ul class="Posts">
+    <li *ngFor="let post of this.posts" class="post">
+      <div class="postTitle">{{post.titlePost}}</div>
+      <div class="userDescription">{{post.textPost}}</div>
+      <div class="postFooter">
+          <div class="userName">{{post.user}}</div>
+          <div class="datetime">{{post.time}}</div>
+      </div>
+    </li>
+</ul>
 
-    <ul class="Posts">
-        <li *ngFor="let post of this.posts" class="post">
-          <div class="postTitle">{{post.titlePost}}</div>
-          <div class="userDescription">{{post.textPost}}</div>
-          <div class="postFooter">
-              <div class="userName">{{post.user}}</div>
-              <div class="datetime">{{post.time}}</div>
-          </div>
-        </li>
-    </ul>
+<button class="button" (click)="addPostModal()">Add Post</button>
 
-    <button class="button" (click)="addPostModal()">Add Post</button>
-
-    <div id="addPost-modal">
-      <form> <!-- (submit)="addPost(newTitlePost.value, newTextPost.value)" -->
-          <input type="text" name="newTitlePost" placeholder="Title post" #newTitlePost>
-          <textarea type="text" name="newTextPost" placeholder="Text post" #newTextPost></textarea>
-          <button class="button" type="button" (click)="addPost($event, newTitlePost.value, newTextPost.value)" (click)="addPostModal()">Send</button>
-          <!-- (click)="addPost($event, newTitlePost.value, newTextPost.value)" -->
-      </form>
-    </div>
+<div id="addPost-modal">
+  <form> <!-- (submit)="addPost(newTitlePost.value, newTextPost.value)" -->
+      <input type="text" name="newTitlePost" placeholder="Title post" #newTitlePost>
+      <textarea type="text" name="newTextPost" placeholder="Text post" #newTextPost></textarea>
+      <button class="button" type="button" (click)="addPost($event, newTitlePost.value, newTextPost.value)" (click)="addPostModal()">Send</button>
+      <!-- (click)="addPost($event, newTitlePost.value, newTextPost.value)" -->
+  </form>
 </div>

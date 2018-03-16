@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   newTitlePost: string;
   newTextPost: string;
   posts;
+  reversePost;
 
   constructor(private user: UserService, public userLog: LoginFormComponent) {
     // получаем все посты в объекте
@@ -30,7 +31,8 @@ export class PostComponent implements OnInit {
   }
 
   viewPosts() {
-
+      //this.reversePost = this.posts.reverse();
+      //console.log(this.reversePost);
   }
 
   addPostModal() {
@@ -51,7 +53,7 @@ export class PostComponent implements OnInit {
         this.posts = [];
 
         let time = new Date();
-        let timePost = `${time.getHours()}:${time.getMinutes()} _ ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
+        let timePost = `${time.getHours()}:${time.getMinutes()}  ${time.getDate()}.${time.getMonth()}.${time.getFullYear()}`;
 
         let id = 1;
 
@@ -59,7 +61,7 @@ export class PostComponent implements OnInit {
       } else {
         // если есть
         let time = new Date();
-        let timePost = `${time.getHours()}:${time.getMinutes()} _ ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
+        let timePost = `${time.getHours()}:${time.getMinutes()}  ${time.getDate()}.${time.getMonth()}.${time.getFullYear()}`;
 
         let id;
 
@@ -81,7 +83,7 @@ export class PostComponent implements OnInit {
           id: id
       }
 
-      this.posts.push(newP);
+      this.posts.unshift(newP);
       var json = JSON.stringify(this.posts); //сериализуем его
       localStorage.setItem("Posts", json);
   }
