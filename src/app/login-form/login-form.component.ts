@@ -10,9 +10,9 @@ import { UserService } from '../user.service';
 export class LoginFormComponent implements OnInit {
 
   locSt: any;
-  userLog: string;
+  public userLog;
 
-  constructor(private router: Router, private user: UserService) { }
+  constructor(private router: Router, private user: UserService) {}
 
   ngOnInit() {
     //this.localStor();
@@ -42,15 +42,17 @@ export class LoginFormComponent implements OnInit {
       } else if (offOn == 0) {
         alert('Error name or password');
       }
-
-      this.userNameLog(userName);
+      this.userLog = userName;
+      console.log(this.userLog, 'var login user');
+      console.log(userName, 'login user');
+      this.userNameLog();
   }
 
   registration(event) {
       event.preventDefault();
 
-      let newUserName = event.target.form.elements[0].value,
-          newUserPass = event.target.form.elements[1].value;
+        let newUserName = event.target.form.elements[0].value,
+            newUserPass = event.target.form.elements[1].value;
 
       if (newUserName === null || newUserName === '' &&
           newUserPass === null || newUserPass === '') {
@@ -78,16 +80,18 @@ export class LoginFormComponent implements OnInit {
                   alert('Пользователь с таким логином существует.');
               } else {
                   this.ls(meaningsLocalS, newUserName, newUserPass);
-                  this.userNameLog(newUserName);
+                  let UserLog = newUserName;
+                  // сохраняет нового пользователя
+                  console.log(newUserName, 'newUserName')
+                  console.log(UserLog, 'newUserName2');
+                  this.userNameLog();
               }
           }
       }
   }
 
-  userNameLog(un) {
-      console.log(un, 'un');
-      console.log(this.userLog = un);
-      return this.userLog = un;
+  userNameLog() {
+
   }
 
   ls(meaningsLocalS, newUserName, newUserPass) {

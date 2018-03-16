@@ -14,17 +14,15 @@ export class PostComponent implements OnInit {
   newTitlePost: string;
   newTextPost: string;
   posts;
-  more: Array = [1,2,3];
 
   constructor(private user: UserService, public userLog: LoginFormComponent) {
     // получаем все посты в объекте
     this.posts = JSON.parse(localStorage.getItem('Posts'));
 
     console.log(this.posts);
-    console.log(this.posts.user);
-    // console.log(userLog, 'userLog');
-    // console.log(userLog.userLog);
-    // console.log(userLog.userNameLog());
+    // console.log(this.userLog, 'userLog');
+    // console.log(this.userLog.userLog, 'userLog fffffffff');
+    // console.log(this.userLog.userNameLog());
   }
 
   ngOnInit() {
@@ -53,7 +51,7 @@ export class PostComponent implements OnInit {
         this.posts = [];
 
         let time = new Date();
-        let timePost = `${time.getHours()}:${time.getMinutes()} / ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
+        let timePost = `${time.getHours()}:${time.getMinutes()} _ ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
 
         let id = 1;
 
@@ -61,7 +59,7 @@ export class PostComponent implements OnInit {
       } else {
         // если есть
         let time = new Date();
-        let timePost = `${time.getHours()}:${time.getMinutes()} / ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
+        let timePost = `${time.getHours()}:${time.getMinutes()} _ ${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`;
 
         let id;
 

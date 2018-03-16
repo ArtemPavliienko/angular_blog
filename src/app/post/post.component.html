@@ -1,15 +1,17 @@
 <app-header></app-header>
 
-<div class="Posts">
+<div>
 
-    <div class="post">
-        <div class="postTitle">Title</div>
-        <div class="userDescription">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio incidunt eaque officia voluptatibus ab asperiores cupiditate non.</div>
-        <div class="postFooter">
-            <div class="userName">kvazar</div>
-            <div class="datetime">03.03.2018</div>
-        </div>
-    </div>
+    <ul class="Posts">
+        <li *ngFor="let post of this.posts" class="post">
+          <div class="postTitle">{{post.titlePost}}</div>
+          <div class="userDescription">{{post.textPost}}</div>
+          <div class="postFooter">
+              <div class="userName">{{post.user}}</div>
+              <div class="datetime">{{post.time}}</div>
+          </div>
+        </li>
+    </ul>
 
     <button class="button" (click)="addPostModal()">Add Post</button>
 
