@@ -13,6 +13,8 @@ export class PostComponent implements OnInit {
   newTextPost: string;
   posts;
   logInUserName: string;
+  isAddPostModal = false;
+  // isDarkened = false;
 
   car: number = 77;
 
@@ -26,14 +28,13 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {}
 
-  addPostModal() {
+  addPostModal(isAddPostModal) {
     // берем модал и добавляем класс опен
-      let modal = $('#addPost-modal');
-      modal.toggleClass('open');
+    this.isAddPostModal = !isAddPostModal;
 
-      // затемняем боди
-      let body = $('body');
-      body.toggleClass('darkened');
+    // затемняем боди
+    // this.isDarkened = !isDarkened;
+
   }
 
   addPost(event, newTitlePost, newTextPost) {

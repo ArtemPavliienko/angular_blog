@@ -13,13 +13,16 @@
     </li>
 </ul>
 
-<button class="button" (click)="addPostModal()">Add Post</button>
+<button class="button" (click)="addPostModal(isAddPostModal)">Add Post</button>
 
-<div id="addPost-modal">
+<div id="addPost-modal" [ngClass]="{'open': isAddPostModal}">
   <form> <!-- (submit)="addPost(newTitlePost.value, newTextPost.value)" -->
       <input type="text" name="newTitlePost" placeholder="Title post" #newTitlePost>
       <textarea type="text" name="newTextPost" placeholder="Text post" #newTextPost></textarea>
-      <button class="button" type="button" (click)="addPost($event, newTitlePost.value, newTextPost.value); addPostModal() ">Send</button>
+      <button class="button" type="button"
+      (click)="addPost($event, newTitlePost.value, newTextPost.value); addPostModal(isAddPostModal)">
+        Send
+      </button>
       <!-- (click)="addPost($event, newTitlePost.value, newTextPost.value)" -->
   </form>
 </div>

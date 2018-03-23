@@ -21,7 +21,7 @@
   color: #ca7b5b;
   font-size: 18px;
   cursor: pointer;
-    
+
   position: absolute;
     top: 15px;
     right: 15px;
@@ -58,7 +58,7 @@
 
 #addPost-modal {
   max-width: 777px;
-  box-shadow: 0 0 5px #d4d4d4;
+  box-shadow: 0 0 17px 7px #d4d4d4;
   margin: 20px 15px;
   padding: 15px;
   position: absolute;
