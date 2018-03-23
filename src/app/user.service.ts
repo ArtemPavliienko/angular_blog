@@ -20,7 +20,6 @@ export class UserService {
 
   saveName(name) {
     this.userName = name;
-    console.log(this.userName,'service');
   }
 
 }

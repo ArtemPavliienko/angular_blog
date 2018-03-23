@@ -2,12 +2,14 @@
 
 <ul class="Posts">
     <li *ngFor="let post of this.posts" class="post">
+      <span class="delPost" (click)="delPost($event, post.user, post.id)" data-id={{post.id}}><i class="fas fa-times"></i></span>
       <div class="postTitle">{{post.titlePost}}</div>
       <div class="userDescription">{{post.textPost}}</div>
       <div class="postFooter">
           <div class="userName">{{post.user}}</div>
           <div class="datetime">{{post.time}}</div>
       </div>
+      <div>{{post.user}} {{logInUserName}}</div>
     </li>
 </ul>
 
@@ -17,7 +19,7 @@
   <form> <!-- (submit)="addPost(newTitlePost.value, newTextPost.value)" -->
       <input type="text" name="newTitlePost" placeholder="Title post" #newTitlePost>
       <textarea type="text" name="newTextPost" placeholder="Text post" #newTextPost></textarea>
-      <button class="button" type="button" (click)="addPost($event, newTitlePost.value, newTextPost.value)" (click)="addPostModal()">Send</button>
+      <button class="button" type="button" (click)="addPost($event, newTitlePost.value, newTextPost.value); addPostModal() ">Send</button>
       <!-- (click)="addPost($event, newTitlePost.value, newTextPost.value)" -->
   </form>
 </div>

@@ -12,14 +12,16 @@ export class PostComponent implements OnInit {
   newTitlePost: string;
   newTextPost: string;
   posts;
-  thisUserName: string;
+  logInUserName: string;
+
+  car: number = 77;
 
   constructor(private user: UserService) {
     // получаем все посты в объекте
     this.posts = JSON.parse(localStorage.getItem('Posts'));
     // name user
-    this.thisUserName = this.user.userName;
-    console.log(this.thisUserName, 'this.userY')
+    this.logInUserName = this.user.userName;
+    console.log(this.logInUserName, 'this.userY')
   }
 
   ngOnInit() {}
@@ -48,16 +50,20 @@ export class PostComponent implements OnInit {
 
         this.localSt(newTitlePost, newTextPost, timePost, id);
       } else {
+
         // если есть
         let time = new Date();
         let timePost = `${time.getHours()}:${time.getMinutes()}  ${time.getDate()}.${time.getMonth()}.${time.getFullYear()}`;
 
         let id;
+        if (id == undefined) id = 1;
 
         // послеждний goods[goods.length - 1];
         // берем первый эл массива
-        let lastPost = this.posts[this.posts.length -1];
-        id = lastPost.id++;
+        if (this.posts.length != 0) {
+          let lastPost = this.posts[this.posts.length -1];
+          id = lastPost.id++;
+        }
 
         this.localSt(newTitlePost, newTextPost, timePost, id);
       }
@@ -65,7 +71,7 @@ export class PostComponent implements OnInit {
 
   localSt(titl, text, timePost, id) {
       let newP = {
-          user: this.thisUserName,
+          user: this.logInUserName,
           titlePost: titl,
           textPost: text,
           time: timePost,
@@ -77,8 +83,24 @@ export class PostComponent implements OnInit {
       localStorage.setItem("Posts", json);
   }
 
-  delPost() {
+  delPost(e, userPost, userPostId) {
+    // пользователь удаляет свой пост или нет
+    if (userPost == this.logInUserName) {
+      // удаляем этот по ID
+      for (let i = 0; i < this.posts.length; i++) {
+        if (this.posts[i].user === userPost) {
+          if (this.posts[i].id === userPostId) {
+            this.posts.splice(i, 1);
+            // break;
+          }
+        }
+      }
+      let json = JSON.stringify(this.posts); //сериализуем его
+      localStorage.setItem("Posts", json);
 
+    } else {
+      console.log('не твой')
+    }
   }
 
 }
